@@ -1,0 +1,49 @@
+name: drupal9-lando-multisite
+recipe: drupal9
+config:
+  webroot: web
+  php: '8.0'
+  # composer_version: '2.4.3'
+  via: apache
+  drush: true
+  xdebug: true
+
+proxy:
+  appserver:
+    - main.drupal9.com
+    - site1.drupal9.com
+    - site2.drupal9.com
+
+services:
+  # Database service used for main site.
+  main_db:
+    type: mysql
+    portforward: true
+    creds:
+      user: drupal
+      password: drupal
+      database: multisite_main
+
+  # Database service used for site1 site.
+  site1_db:
+    type: mysql
+    portforward: true
+    creds:
+      user: drupal
+      password: drupal
+      database: multisite_site1
+
+  # Database service used for site2 site.
+  site2_db:
+    type: mysql
+    portforward: true
+    creds:
+      user: drupal
+      password: drupal
+      database: multisite_site2
+
+  db_phpmyadmin:
+    type: phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=main_db,site1_db,site2_db
