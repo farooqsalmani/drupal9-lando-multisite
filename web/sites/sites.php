@@ -56,5 +56,5 @@
  * @see https://www.drupal.org/documentation/install/multi-site
  */
 
-$sites['site1.drupal9.com'] = 'site1';
-$sites['site2.drupal9.com'] = 'site2';
+$sites['site1.drupal9test.com'] = 'site1';
+$sites['site2.drupal9test.com'] = 'site2';

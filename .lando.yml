@@ -4,20 +4,20 @@ config:
   webroot: web
   php: '8.0'
   # composer_version: '2.4.3'
-  via: apache
+  via: nginx
   drush: true
   xdebug: true
 
 proxy:
-  appserver:
-    - main.drupal9.com
-    - site1.drupal9.com
-    - site2.drupal9.com
+  appserver_nginx:
+    - main.drupal9test.com
+    - site1.drupal9test.com
+    - site2.drupal9test.com
 
 services:
   # Database service used for main site.
-  main_db:
-    type: mysql
+  database:
+    type: mariadb
     portforward: true
     creds:
       user: drupal
@@ -26,7 +26,7 @@ services:
 
   # Database service used for site1 site.
   site1_db:
-    type: mysql
+    type: mariadb
     portforward: true
     creds:
       user: drupal
@@ -35,7 +35,7 @@ services:
 
   # Database service used for site2 site.
   site2_db:
-    type: mysql
+    type: mariadb
     portforward: true
     creds:
       user: drupal
@@ -44,6 +44,10 @@ services:
 
   db_phpmyadmin:
     type: phpmyadmin
-    environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOSTS=main_db,site1_db,site2_db
+    hosts:
+      - database
+      - site1_db
+      - site2_db
+#    environment:
+#      - PMA_ARBITRARY=1
+#      - PMA_HOSTS=main_db,site1_db,site2_db
