@@ -805,4 +805,7 @@ $databases['default']['default'] = array (
   'driver' => 'mysql',
   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
 );
-$settings['config_sync_directory'] = 'sites/site1/files/config_936FE-q68-w5q3t4Q8n_Sf-YlOBICY2nYFlwFYb15sRO6kt_AjNhW7r4Z6PRSPwSMESys0isSg/sync';
+# $settings['config_sync_directory'] = 'sites/site1/files/config_936FE-q68-w5q3t4Q8n_Sf-YlOBICY2nYFlwFYb15sRO6kt_AjNhW7r4Z6PRSPwSMESys0isSg/sync';
+
+// Config sync directory for subsite site1.
+$settings['config_sync_directory'] = '../config/site1/sync';
